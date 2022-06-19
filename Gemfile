@@ -33,6 +33,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Add sassc as dependency for bootstrap
+gem 'jquery-rails'
+gem 'execjs', '< 2.8'
+gem 'autoprefixer-rails', '9.8.5'
+gem 'sassc', '< 2.3.0'
+gem 'bootstrap', '~> 5.1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
