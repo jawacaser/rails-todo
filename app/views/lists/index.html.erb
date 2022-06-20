@@ -7,8 +7,9 @@
   <thead>
     <tr class="fs-5 text-center">
       <th>Challenge</th>
-      <th>Achievement Unlocked</th>
-      <th colspan="3"></th>
+      <th>Achieved</th>
+      <th>Update</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -19,8 +20,14 @@
       <tr class="table-secondary">
         <td class="fs-6 text-muted text-center"><%= list.description %></td>
         <td class="text-center fw-bold text-success fs-5">✓</td>
+        <td class="text-center">
+          <%= form_with(model: list, local: true) do |form| %>
+            <%= form.text_field :description, id: :list_description, type: 'hidden' %>
+            <%= form.check_box :completed, :checked => false, id: :list_completed, :style => 'visibility: hidden' %>
+            <%= form.submit 'Undo', class: 'btn btn-outline-secondary btn-sm' %>
+          <% end %>
+        </td>
         <td>
-          <% link_to 'View', list, class: 'btn btn-outline-secondary' %>
           <center><%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %></center>
         </td>
       </tr>
@@ -28,8 +35,14 @@
       <tr>
         <td class="fs-6"><%= link_to list.description, edit_list_path(list), class: 'btn btn-outline-secondary d-grid' %></td>
         <td class="text-center fw-bold fs-5">✗</td>
+        <td class="text-center">
+          <%= form_with(model: list, local: true) do |form| %>
+            <%= form.text_field :description, id: :list_description, type: 'hidden' %>
+            <%= form.check_box :completed, :checked => true, id: :list_completed, :style => 'visibility: hidden' %>
+            <%= form.submit 'Unlock', class: 'btn btn-outline-success btn-sm' %>
+          <% end %>
+        </td>
         <td>
-          <% link_to 'View', list, class: 'btn btn-outline-secondary' %>
           <center><%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %></center>
         </td>
       </tr>
@@ -37,3 +50,10 @@
     <% end %>
   </tbody>
 </table>
+
+<br/>
+<br/>
+<div class="form-group">
+<%= link_to 'Delete Completed Items', home_trash_marked_path, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark btn-sm text-white' %>
+<%= link_to 'Delete ALL Items', home_trash_all_path, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark btn-sm text-white' %>
+</div>

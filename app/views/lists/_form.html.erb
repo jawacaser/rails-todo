@@ -11,17 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :list_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :completed %>
-    <%= form.check_box :completed, id: :list_completed %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex gap-2 my-3 justify-content-center form-group">
+    <% form.label :description %>
+    <%= form.text_field :description, id: :list_description, class: 'fs-5 form-control w-50' %>
+    
+    <div class="border rounded bg-light p-2 btn-group" role="group">
+      <%= form.check_box :completed, id: :list_completed, class: 'btn-check' %>
+      <%= form.label 'Completed?', class: 'btn btn-outline-success', for: :list_completed %>
+    </div>
+    <%= form.submit 'Save Challenge', class: 'btn btn-secondary' %>
   </div>
 <% end %>
