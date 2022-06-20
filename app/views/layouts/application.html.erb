@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TodoApp</title>
+    <title>Be A Champion</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,9 +10,12 @@
 
   </head>
 
-  <body>
+  <body class="bg-success container-fluid" style="--bs-bg-opacity: .5;">
 
-  <div class="container">
+  <%= render 'lists/navbar' %>
+
+  <div class="container flex">
+    <%= render 'flash' %>
     <%= yield %>
   </div>
 

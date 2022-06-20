@@ -1,40 +1,39 @@
-<p id="notice"><%= notice %></p>
 
-<h1>The Champ's To-do List</h1>
+<%# <h1 class="text-center fw-bold m-3 p-1 border border-2 bg-success text-white">Challenges List</h1> %>
 
-<table class="table table-bordered" variant="dark">
+<%= render 'form_index', list: @list %>
+
+<table class="table table-bordered table-hover table-light table-responsive">
   <thead>
-    <tr>
-      <th>Achievement</th>
-      <th>Unlocked</th>
+    <tr class="fs-5 text-center">
+      <th>Challenge</th>
+      <th>Achievement Unlocked</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="align-middle">
     <% @lists.each do |list| %>
 
       <% if list.completed %>
       <tr class="table-secondary">
-        <td><%= list.description %></td>
-        <td>✓</td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="fs-6 text-muted text-center"><%= list.description %></td>
+        <td class="text-center fw-bold text-success fs-5">✓</td>
+        <td>
+          <% link_to 'View', list, class: 'btn btn-outline-secondary' %>
+          <center><%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %></center>
+        </td>
       </tr>
       <% else %>
       <tr>
-        <td><%= list.description %></td>
-        <td>✗</td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="fs-6"><%= link_to list.description, edit_list_path(list), class: 'btn btn-outline-secondary d-grid' %></td>
+        <td class="text-center fw-bold fs-5">✗</td>
+        <td>
+          <% link_to 'View', list, class: 'btn btn-outline-secondary' %>
+          <center><%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %></center>
+        </td>
       </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Add Achievement', new_list_path, class: 'btn btn-outline-secondary' %>

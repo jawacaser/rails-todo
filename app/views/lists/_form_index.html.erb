@@ -1,0 +1,18 @@
+<%= form_with(model: list, local: true) do |form| %>
+  <% if list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+      <% list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="d-flex gap-2 my-3 align-items-center">
+
+    <%= form.text_field :description, id: :list_description, class: 'fs-5 form-control', placeholder: 'Something awesome' %>
+    <%= form.submit 'Add Challenge', class: 'btn btn-success text-white border-2 border-dark' %>
+  </div>
+<% end %>
